@@ -1,0 +1,13 @@
+{
+  "id": "{F5AAB293-F714-4FD1-ADF9-8F30B22201B7}",
+  "author": "Ulrich Bittner",
+  "name": "Bose",
+  "url": "https://www.bose.de/de_de/index.html",
+  "compatibility": {
+    "version": "5.1",
+    "date": 1554076800
+  },
+  "version": "2.01",
+  "build": 2001,
+  "date": 1554076800
+}

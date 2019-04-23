@@ -1,0 +1,423 @@
+{
+  "elements": [
+    {
+      "type": "Image",
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAABjFBMVEUyLzEzMDI0MTM1MjQ2MzU3NDY3NTY4NTc5Njg6Nzk6ODo+Oz0+PD1APT9BPkBBP0FCQEFEQUNFQkRFQ0VGQ0VHREZIRUdKR0lLSEpLSUtPTU9QTk9ST1FUUlNWU1VbWVpcWltcWlxjYWJkYmRraWtvbW9wbm9ycHJ0c3R4dnd5eHl6eHp7eXp9e32Bf4GDgoOGhYaIhoiJh4iJiImMi4yOjY6Pjo+Qj5CRkJGTkpOWlZaXlpeYl5iZmJmdnZ2gn6CgoKGioaKlpKWnpqenp6itrK2urq+vr6+wr7CxsbK1tLW1tba4t7i4uLm/vr/AwMHDw8TGxsbGxsfIyMjJycnJycrKysvLy8zMzMzNzc3Nzc7Ozs/Pz8/Q0NDR0dLS0tPT1NTX19fZ2dra2tra29vb3Nzd3d3e3t7e39/f4ODg4OHh4eHh4uLi4+Pj5OTl5ubm5+fn5+jo6enp6urq6+vr6+zr7Ozs7e3t7u7u7+/v7+/v8PDw8fHx8vLy8/Pz9PT09fX19vb29/f3+PhGK6r2AAACSklEQVR42u3WWVcTQRAF4AkEEAUBjQ6uKIgRd1RA44Yb4E5ARVFAUSKKEiMOApLAeP+4Tao7nm4PSJIHfbj1dE8x0/WdpLuDh39cHgEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEDA3x4YTVr1NKt6mSdW76NqrYxZrZEQmEquU1PFAF54Th0FLlXarWgK477zWDeW3VahOosA/Dws7zT4vi9j43ig12ncrUPFTHaPpGq/VvcuIiGh1v+jEkUA+mWVbRmVj+eHvck2mxFhTNJZXJHgfzNjG4JPmvKwrD2wpEdcV/ltVIZd1cOWcVtS/dzsVkn3gIHefA2hQ1pt5W3CHlmlORMEM21rqakw7D7mGyXdxAkJLYHUD/XmM2lFhnUvmC8F8L7a3j2RQxNmWCtwXtKB1XfOJovcQNji7rxjpQDiziL1s3iu990EJqMSBzG3w3nuDO6482umSwAk5d3KcfUJnszH1+ZUnAaOSGpXD4b6Y75rhi00SbpmvoBgsYQ9EB6UVc6p/LVO7oA+fSq+4JGkqtSibLveaeT2Sq8HXRL2r5Z1E94yJ0pdB6f0sJi5Zr7vk9SFbgl1K+YIxpZSVZIeF3sVJ6z7oub3TbJdj73smQtH/3HnQtps1Jg+FN4A2nUqLNWxSUCnt1HFc+bCKdSuEaS32K2KCxh034y83CRg3Z8PVUMf1rbFK6s3llO9z1ZrOA1Muu+O8v8BAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggg4H8G/AIWmC/zrvVpEgAAAABJRU5ErkJggg=="
+    },
+    {
+      "type": "Label",
+      "caption": "Bose SoundTouch - A project of Ulrich Bittner"
+    },
+    {
+      "type": "Label",
+      "caption": " "
+    },
+    {
+      "type": "Label",
+      "caption": "Description:"
+    },
+    {
+      "type": "Label",
+      "caption": "This instance integrates Bose SoundTouch speakers into IP-Symcon."
+    },
+    {
+      "type": "Label",
+      "caption": "You can control the Bose SoundTouch system."
+    },
+    {
+      "type": "Label",
+      "caption": "For further information, please refer to the documentation or the notes here in the configuration."
+    },
+    {
+      "type": "Label",
+      "caption": " "
+    },
+    {
+      "type": "Label",
+      "caption": "Configuration:"
+    },
+    {
+      "type": "ExpansionPanel",
+      "caption": "(0) Instance information",
+      "items": [
+        {
+          "type": "Label",
+          "caption": "Symcon version:\t5.1>"
+        },
+        {
+          "type": "Label",
+          "caption": "Module version:\t2.01-2001"
+        },
+        {
+          "type": "Label",
+          "caption": "Date:\t\t\tApril 23, 2019"
+        },
+        {
+          "type": "Label",
+          "caption": "Time:\t\t\t10:00"
+        },
+        {
+          "type": "Label",
+          "caption": "Developer:\t\tUlrich Bittner"
+        },
+        {
+          "type": "Label",
+          "caption": "Prefix:\t\t\tBST"
+        }
+      ]
+    },
+    {
+      "type": "ExpansionPanel",
+      "caption": "(1) Device data",
+      "items": [
+        {
+          "type": "Label",
+          "caption": "You can optionally specify a name for the SoundTouch device, e.g. SoundTouch 10 living room:"
+        },
+        {
+          "type": "ValidationTextBox",
+          "name": "DeviceName",
+          "caption": "Device name"
+        },
+        {
+          "type": "Label",
+          "caption": "Please specify the IP address of the SoundTouch device:"
+        },
+        {
+          "type": "ValidationTextBox",
+          "name": "DeviceIP",
+          "caption": "IP-Address"
+        },
+        {
+          "type": "Label",
+          "caption": "Please specify the network timeout in milliseconds:"
+        },
+        {
+          "type": "NumberSpinner",
+          "name": "Timeout",
+          "caption": "Timeout",
+          "suffix": "ms"
+        },
+        {
+          "type": "Label",
+          "caption": "Please specify the interval for information update in seconds (0 = off):"
+        },
+        {
+          "type": "NumberSpinner",
+          "name": "UpdateInformationInterval",
+          "caption": "Update interval",
+          "suffix": "s"
+        }
+      ]
+    },
+    {
+      "type": "ExpansionPanel",
+      "caption": "(2) Additional audio sources",
+      "items": [
+        {
+          "type": "Label",
+          "caption": "Besides the device presets 1 - 6 you have the possibility to add additional audio sources or delete entries that are no longer needed:"
+        },
+        {
+          "type": "List",
+          "name": "CustomPresets",
+          "rowCount": 10,
+          "add": true,
+          "delete": true,
+          "sort": {
+            "column": "Position",
+            "direction": "ascending"
+          },
+          "columns": [
+            {
+              "caption": "Position",
+              "name": "Position",
+              "width": "150px",
+              "add": "",
+              "edit": {
+                "type": "ValidationTextBox"
+              }
+            },
+            {
+              "caption": "Source",
+              "name": "Source",
+              "width": "250px",
+              "add": "INTERNET_RADIO",
+              "edit": {
+                "type": "Select",
+                "options": [
+                  {
+                    "caption": "Internet Radio",
+                    "value": "INTERNET_RADIO"
+                  },
+                  {
+                    "caption": "TuneIn",
+                    "value": "TUNEIN"
+                  },
+                  {
+                    "caption": "Amazon",
+                    "value": "AMAZON"
+                  },
+                  {
+                    "caption": "Spotify",
+                    "value": "SPOTIFY"
+                  }
+                ]
+              }
+            },
+            {
+              "caption": "Description",
+              "name": "Description",
+              "width": "250px",
+              "add": "",
+              "edit": {
+                "type": "ValidationTextBox"
+              }
+            },
+            {
+              "caption": "Source specifications",
+              "name": "SourceSpecifications",
+              "width": "250px",
+              "add": "",
+              "edit": {
+                "type": "ValidationTextBox"
+              }
+            },
+            {
+              "caption": "Source account",
+              "name": "SourceAccount",
+              "width": "250px",
+              "add": "",
+              "edit": {
+                "type": "ValidationTextBox"
+              }
+            },
+            {
+              "caption": "Volume",
+              "name": "Volume",
+              "width": "150px",
+              "add": 35,
+              "edit": {
+                "type": "NumberSpinner",
+                "digits": 0,
+                "suffix": "%"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExpansionPanel",
+      "caption": "(3) Visualisation",
+      "items": [
+        {
+          "type": "Label",
+          "caption": "Please select the functions that are to be displayed in the WebFront:"
+        },
+        {
+          "type": "CheckBox",
+          "name": "ShowZoneControl",
+          "caption": "Zone control"
+        },
+        {
+          "type": "CheckBox",
+          "name": "ShowAudioSources",
+          "caption": "Audio sources"
+        },
+        {
+          "type": "CheckBox",
+          "name": "ShowMediaInformation",
+          "caption": "Media information"
+        },
+        {
+          "type": "CheckBox",
+          "name": "ShowTimer",
+          "caption": "Timer"
+        },
+        {
+          "type": "CheckBox",
+          "name": "ShowAutomaticPowerOn",
+          "caption": "Automatic power on"
+        },
+        {
+          "type": "CheckBox",
+          "name": "ShowAutomaticPowerOff",
+          "caption": "Automatic power off"
+        }
+      ]
+    },
+    {
+      "type": "ExpansionPanel",
+      "caption": "(4) Publish media file",
+      "items": [
+        {
+          "type": "Label",
+          "caption": "Please select the media file to be published for audio notification on this system. After accepting the CHANGES press the PUBLISH MEDIA FILE button."
+        },
+        {
+          "type": "SelectMedia",
+          "name": "MediaFile",
+          "caption": "Media file"
+        },
+        {
+          "type": "Label",
+          "caption": "After publishing, you can add the media file under point (5) Audio notifications."
+        },
+        {
+          "type": "Label",
+          "caption": "The published media file is located at http://symcon-server:3777/user/media/"
+        }
+      ]
+    },
+    {
+      "type": "ExpansionPanel",
+      "caption": "(5) Audio notifications",
+      "items": [
+        {
+          "type": "Label",
+          "caption": "To use the Audio Notification API, you will need to enter your app key:"
+        },
+        {
+          "type": "PasswordTextBox",
+          "name": "AppKey",
+          "caption": "App key"
+        },
+        {
+          "type": "Label",
+          "caption": "This indicates the service providing the notification. This text will appear on the device display (when available) and the SoundTouch application screen under artists:"
+        },
+        {
+          "type": "ValidationTextBox",
+          "name": "ServiceDescription",
+          "caption": "Service description"
+        },
+        {
+          "type": "Label",
+          "caption": "This indicates further details about the notification. This text will appear on the device display (when available) and the SoundTouch application screen under album:"
+        },
+        {
+          "type": "ValidationTextBox",
+          "name": "MessageDescription",
+          "caption": "Details about the notification"
+        },
+        {
+          "type": "Label",
+          "caption": ""
+        },
+        {
+          "type": "Label",
+          "caption": "Please specify the URL for your audio files. You can publish audio files for this system under point (4) Media files."
+        },
+        {
+          "type": "Label",
+          "caption": "Example URL: http://symcon-server:3777/user/media/audiofile.mp3"
+        },
+        {
+          "type": "Label",
+          "caption": "The description text will appear on the device display (when available) and the SoundTouch application screen under title:"
+        },
+        {
+          "type": "List",
+          "name": "AudioNotifications",
+          "rowCount": 5,
+          "add": true,
+          "delete": true,
+          "sort": {
+            "column": "Position",
+            "direction": "ascending"
+          },
+          "columns": [
+            {
+              "caption": "Position",
+              "name": "Position",
+              "width": "150px",
+              "add": "",
+              "edit": {
+                "type": "ValidationTextBox"
+              }
+            },
+            {
+              "caption": "Description",
+              "name": "Description",
+              "width": "250px",
+              "add": "",
+              "edit": {
+                "type": "ValidationTextBox"
+              }
+            },
+            {
+              "caption": "URL",
+              "name": "URL",
+              "width": "250px",
+              "add": "http://",
+              "edit": {
+                "type": "ValidationTextBox"
+              }
+            },
+            {
+              "caption": "Volume",
+              "name": "Volume",
+              "width": "150px",
+              "add": 35,
+              "edit": {
+                "type": "NumberSpinner",
+                "digits": 0,
+                "suffix": "%"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Button",
+      "caption": "Manual",
+      "onClick": "echo 'https://github.com/ubittner/SymconBose';"
+    },
+    {
+      "type": "Button",
+      "caption": "Publish media file",
+      "onClick": "BST_PublishMediaFile($id);"
+    },
+    {
+      "type": "Button",
+      "caption": "Show device information",
+      "onClick": "$info = BST_GetDeviceInfo($id); print_r($info); IPS_LogMessage('BST', $info->asXML());"
+    },
+    {
+      "type": "Button",
+      "caption": "Show playing information",
+      "onClick": "$info = BST_GetDeviceNowPlaying($id); print_r($info); IPS_LogMessage('BST', $info->asXML());"
+    }
+  ],
+  "status": [
+    {
+      "code": 101,
+      "icon": "active",
+      "caption": "Bose SoundTouch will be created"
+    },
+    {
+      "code": 102,
+      "icon": "active",
+      "caption": "Bose SoundTouch is active"
+    },
+    {
+      "code": 103,
+      "icon": "active",
+      "caption": "Bose SoundTouch will be deleted"
+    },
+    {
+      "code": 104,
+      "icon": "inactive",
+      "caption": "Bose SoundTouch is inactive"
+    },
+    {
+      "code": 201,
+      "icon": "inactive",
+      "caption": "Please enter the device data!"
+    }
+  ]
+}

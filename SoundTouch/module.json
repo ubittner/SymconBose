@@ -1,0 +1,14 @@
+{
+	"id": "{4836EF46-FF79-4D6A-91C9-FE54F1BDF2DB}",
+	"name": "BoseSoundTouch",
+	"type": 3,
+	"vendor": "Bose",
+	"aliases": 
+	[
+		"BOSE SoundTouch"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "BST"
+}
