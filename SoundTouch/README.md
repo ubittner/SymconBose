@@ -5,7 +5,7 @@
 ![Version](https://img.shields.io/badge/Modul_Build-2001-blue.svg)
 ![Version](https://img.shields.io/badge/Code-PHP-blue.svg)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![StyleCI](https://github.styleci.io/repos/48684794/shield?branch=develop&style=flat)](https://github.styleci.io/repos/48684794)
+[![StyleCI](https://github.styleci.io/repos/183038756/shield?branch=master&style=flat)](https://github.styleci.io/repos/183038756)
 
 ![Logo](../imgs/bose_logo_white.png)
 
