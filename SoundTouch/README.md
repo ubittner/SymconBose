@@ -122,6 +122,12 @@ Die Informationen werden auch unter Meldungen (Log) gespeichert / angezeigt.
 __Audiobenachrichtigungen__:
 
 Mit Version 2.00 besteht die Möglichkeit Audiobenachrichtigungen auf dem Bose SoundTouch Gerät auszugeben.  
+
+Folgende Geräte werden zur Zeit für die Audiobenachrichtigungen unterstützt:  
+* SoundTouch 10
+* SoundTouch 20 Series III
+* SoundTouch 30 Series III  
+
 Nachfolgende Konfiguration ist vorzunehemen, wenn die Audioquelle sich auf dem IP-Symcom Server befinden soll.  
 Bitte beachten Sie, dass nicht alle Bose SoundTouch Systeme (ältere Modelle) Audiobenachrichtigungen wiedergeben können.  
 Fügen Sie zunächst die Audiodatei zu den Medien Dateien hinzu.  
