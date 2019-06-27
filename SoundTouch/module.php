@@ -1073,6 +1073,8 @@ class BoseSoundTouch extends IPSModule
             }
         }
         // Bass
+        $dump = json_encode($this->ReadAttributeBoolean('BassCapabilities'));
+        $this->SendDebug('BST', 'Bass Capabilities: ' . $dump, 0);
         if ($this->ReadAttributeBoolean('BassCapabilities')) {
             $bass = $this->GetDeviceBass();
             if (!is_null($bass)) {
