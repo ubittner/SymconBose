@@ -10,7 +10,7 @@
  * @license     CC BY-NC-SA 4.0
  *
  * @version     2.01
- * @build       2001
+ * @build       2002
  * @date:       2019-04-23, 10:00
  *
  * @see         https://github.com/ubittner/SymconBoseSoundTouch
@@ -21,7 +21,8 @@
  *              Module
  *              {4836EF46-FF79-4D6A-91C9-FE54F1BDF2DB}
  *
- * @changelog	2019-04-23, 10:00, added changes for module store
+ * @changelog	2019-06-27, 21:42, fix for update device information with no bass capabilities
+ *              2019-04-23, 10:00, added changes for module store
  *              2018-08-10, 20:00, initial module script version 2.00
  *
  */
@@ -235,6 +236,11 @@ class BoseSoundTouch extends IPSModule
         // Automatic power off
         $bufferData = ['fadeOut' => false, 'timestamp' => 0];
         $this->SetBuffer('AutomaticPowerOff', json_encode($bufferData));
+
+        // Register attributes
+
+        // Bass capabilities
+        $this->RegisterAttributeBoolean("BassCapabilities", false);
 
         // Register timer
 
@@ -798,14 +804,18 @@ class BoseSoundTouch extends IPSModule
     protected function CheckBassCapabilities()
     {
         $hiddenMode = true;
+        $useBass = false;
         $bassCapabilities = $this->GetDeviceBassCapabilities();
         if ($bassCapabilities) {
             $bass = $bassCapabilities->bassAvailable;
             if ($bass) {
                 $hiddenMode = false;
+                $useBass = true;
+
             }
-            IPS_SetHidden($this->GetIDForIdent('BassSlider'), $hiddenMode);
         }
+        IPS_SetHidden($this->GetIDForIdent('BassSlider'), $hiddenMode);
+        $this->WriteAttributeBoolean("BassCapabilities", $useBass);
     }
 
     /**
@@ -1064,11 +1074,13 @@ class BoseSoundTouch extends IPSModule
             }
         }
         // Bass
-        $bass = $this->GetDeviceBass();
-        if (!is_null($bass)) {
-            $actualBass = (int) $bass->actualbass;
-            if ($bass) {
-                $this->SetValue('BassSlider', $actualBass);
+        if ($this->ReadAttributeBoolean('BassCapabilities')) {
+            $bass = $this->GetDeviceBass();
+            if (!is_null($bass)) {
+                $actualBass = (int)$bass->actualbass;
+                if ($bass) {
+                    $this->SetValue('BassSlider', $actualBass);
+                }
             }
         }
         // Zone device
