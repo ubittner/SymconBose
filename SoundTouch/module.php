@@ -811,7 +811,6 @@ class BoseSoundTouch extends IPSModule
             if ($bass) {
                 $hiddenMode = false;
                 $useBass = true;
-
             }
         }
         IPS_SetHidden($this->GetIDForIdent('BassSlider'), $hiddenMode);
