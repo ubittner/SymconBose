@@ -240,7 +240,7 @@ class BoseSoundTouch extends IPSModule
         // Register attributes
 
         // Bass capabilities
-        $this->RegisterAttributeBoolean("BassCapabilities", false);
+        $this->RegisterAttributeBoolean('BassCapabilities', false);
 
         // Register timer
 
@@ -815,7 +815,7 @@ class BoseSoundTouch extends IPSModule
             }
         }
         IPS_SetHidden($this->GetIDForIdent('BassSlider'), $hiddenMode);
-        $this->WriteAttributeBoolean("BassCapabilities", $useBass);
+        $this->WriteAttributeBoolean('BassCapabilities', $useBass);
     }
 
     /**
@@ -1077,7 +1077,7 @@ class BoseSoundTouch extends IPSModule
         if ($this->ReadAttributeBoolean('BassCapabilities')) {
             $bass = $this->GetDeviceBass();
             if (!is_null($bass)) {
-                $actualBass = (int)$bass->actualbass;
+                $actualBass = (int) $bass->actualbass;
                 if ($bass) {
                     $this->SetValue('BassSlider', $actualBass);
                 }
