@@ -20,7 +20,6 @@
  *
  *              Module
  *              {4836EF46-FF79-4D6A-91C9-FE54F1BDF2DB}
- *
  */
 
 // Declare
