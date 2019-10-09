@@ -6,12 +6,12 @@
  * @file        module.php
  *
  * @author      Ulrich Bittner
- * @copyright   (c) 2018
+ * @copyright   (c) 2018, 2019
  * @license     CC BY-NC-SA 4.0
  *
- * @version     2.01
- * @build       2002
- * @date:       2019-04-23, 10:00
+ * @version     2.02
+ * @build       2003
+ * @date:       2019-10-09, 18:00
  *
  * @see         https://github.com/ubittner/SymconBoseSoundTouch
  *
@@ -20,10 +20,6 @@
  *
  *              Module
  *              {4836EF46-FF79-4D6A-91C9-FE54F1BDF2DB}
- *
- * @changelog	2019-06-27, 21:42, fix for update device information with no bass capabilities
- *              2019-04-23, 10:00, added changes for module store
- *              2018-08-10, 20:00, initial module script version 2.00
  *
  */
 
@@ -942,71 +938,125 @@ class BoseSoundTouch extends IPSModule
     {
         $nowPlaying = $this->GetDeviceNowPlaying();
         if (!is_null($nowPlaying)) {
+            $nowPlayingData = json_decode(json_encode($nowPlaying), true);
             // Device power
-            $deviceMode = (string) $nowPlaying->attributes()->source;
-            $devicePower = false;
-            if ($deviceMode != 'STANDBY') {
-                $devicePower = true;
-            }
-            SetValue($this->GetIDForIdent('DevicePower'), $devicePower);
-            // Play pause
-            $playMode = $nowPlaying->playStatus;
-            switch ($playMode) {
-                case 'PAUSE_STATE':
-                case 'STOP_STATE':
-                case 'INVALID_PLAY_STATUS':
-                    $value = 1;
-                    break;
-                default:
-                    $value = 2;
-                    break;
-            }
-            $this->SetValue('PlayMode', $value);
-            // Presets
-            $source = (string) $nowPlaying->attributes()->source;
-            $location = null;
-            if (@isset($nowPlaying->ContentItem->attributes()->location)) {
-                $location = (string) $nowPlaying->ContentItem->attributes()->location;
-            }
-            $audioLocations = 'BST.' . $this->InstanceID . '.AudioLocations';
-            $associations = IPS_GetVariableProfile($audioLocations)['Associations'];
-            $sourceNumber = 0;
-            foreach ($associations as $association) {
-                if ($association['Name'] == $location) {
-                    $sourceNumber = $association['Value'];
+            if (array_key_exists('@attributes', $nowPlayingData)) {
+                if (array_key_exists('source', $nowPlayingData['@attributes'])) {
+                    $deviceMode = (string) $nowPlayingData['@attributes']['source'];
+                    $this->SendDebug(__FUNCTION__, 'We have a source: ' . $deviceMode, 0);
+                    $devicePower = false;
+                    if ($deviceMode != 'STANDBY') {
+                        $devicePower = true;
+                    }
+                    SetValue($this->GetIDForIdent('DevicePower'), $devicePower);
                 }
             }
-            if ($sourceNumber == 0) {
-                foreach ($associations as $association) {
-                    if ($association['Name'] == $source) {
-                        $sourceNumber = $association['Value'];
+            // Play pause
+            if (array_key_exists('playStatus', $nowPlayingData)) {
+                $playMode = (string) $nowPlayingData['playStatus'];
+                $this->SendDebug(__FUNCTION__, 'We have a playStatus: ' . $playMode, 0);
+                switch ($playMode) {
+                    case 'PAUSE_STATE':
+                    case 'STOP_STATE':
+                    case 'INVALID_PLAY_STATUS':
+                        $value = 1;
+                        break;
+                    default:
+                        $value = 2;
+                        break;
+                }
+                $this->SetValue('PlayMode', $value);
+            }
+            // Presets
+            $source = '';
+            if (array_key_exists('@attributes', $nowPlayingData)) {
+                if (array_key_exists('source', $nowPlayingData['@attributes'])) {
+                    $source = (string) $nowPlayingData['@attributes']['source'];
+                    if (array_key_exists('ContentItem', $nowPlayingData)) {
+                        if (array_key_exists('@attributes', $nowPlayingData['ContentItem'])) {
+                            if (array_key_exists('location', $nowPlayingData['ContentItem']['@attributes'])) {
+                                $location = (string) $nowPlayingData['ContentItem']['@attributes']['location'];
+                                $this->SendDebug(__FUNCTION__, 'We have a location: ' . $location, 0);
+                                $audioLocations = 'BST.' . $this->InstanceID . '.AudioLocations';
+                                $associations = IPS_GetVariableProfile($audioLocations)['Associations'];
+                                $sourceNumber = 0;
+                                foreach ($associations as $association) {
+                                    if ($association['Name'] == $location) {
+                                        $sourceNumber = $association['Value'];
+                                    }
+                                }
+                                if ($sourceNumber == 0) {
+                                    foreach ($associations as $association) {
+                                        if ($association['Name'] == $source) {
+                                            $sourceNumber = $association['Value'];
+                                        }
+                                    }
+                                }
+                                if ($sourceNumber != 0) {
+                                    $this->SendDebug(__FUNCTION__, 'Location is audio source preset: #' . (string) $sourceNumber, 0);
+                                    $actualSource = $this->GetValue('AudioSources');
+                                    if ($actualSource != $sourceNumber) {
+                                        $this->SetValue('AudioSources', $sourceNumber);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-            if ($sourceNumber != 0) {
-                $actualSource = $this->GetValue('AudioSources');
-                if ($actualSource != $sourceNumber) {
-                    $this->SetValue('AudioSources', $sourceNumber);
-                }
-            }
             // Cover
-            if ($deviceMode == 'STANDBY' || @!isset($nowPlaying->art->attributes()->artImageStatus)) {
-                $cover = 'https://raw.githubusercontent.com/ubittner/SymconBoseSoundTouch/master/imgs/bose_logo_white.png';
-            } else {
-                $cover = (string) ($nowPlaying->art);
-                $imageStatus = (string) $nowPlaying->art->attributes()->artImageStatus;
-                if ($imageStatus == 'SHOW_DEFAULT_IMAGE') {
-                    $cover = 'https://raw.githubusercontent.com/ubittner/SymconBoseSoundTouch/master/imgs/bose_logo_white.png';
+            $cover = 'https://raw.githubusercontent.com/ubittner/SymconBose/master/imgs/bose_logo_white.png';
+            if (array_key_exists('art', $nowPlayingData)) {
+                $type = gettype($nowPlayingData['art']);
+                if ($type == 'string') {
+                    $cover = (string) ($nowPlayingData['art']);
+                    $this->SendDebug(__FUNCTION__, 'We have a cover: ' . $cover, 0);
                 }
             }
             // Name
-            $name = (string) $nowPlaying->ContentItem->itemName;
+            $name = '';
+            if (array_key_exists('ContentItem', $nowPlayingData)) {
+                if (array_key_exists('itemName', $nowPlayingData['ContentItem'])) {
+                    $type = gettype($nowPlayingData['ContentItem']['itemName']);
+                    if ($type == 'string') {
+                        $name = (string) $nowPlayingData['ContentItem']['itemName'];
+                        $this->SendDebug(__FUNCTION__, 'We have an item name: ' . $name, 0);
+                    }
+                }
+            }
             // Artist
-            $artist = utf8_decode((string) $nowPlaying->artist);
+            $artist = '';
+            if (array_key_exists('artist', $nowPlayingData)) {
+                $type = gettype($nowPlayingData['artist']);
+                if ($type == 'string') {
+                    $artist = utf8_decode((string) $nowPlayingData['artist']);
+                    $this->SendDebug(__FUNCTION__, 'We have an artist: ' . $artist, 0);
+                }
+            }
             // Track
-            $track = utf8_decode((string) $nowPlaying->track);
+            $track = '';
+            if (array_key_exists('track', $nowPlayingData)) {
+                $type = gettype($nowPlayingData['track']);
+                if ($type == 'string') {
+                    $track = utf8_decode((string) $nowPlayingData['track']);
+                    $this->SendDebug(__FUNCTION__, 'We have a track: ' . $track, 0);
+                }
+            }
             // Album
-            $album = utf8_decode((string) $nowPlaying->album);
+            $album = '';
+            if (array_key_exists('album', $nowPlayingData)) {
+                $type = gettype($nowPlayingData['album']);
+                switch ($type) {
+                    case 'array':
+                        $this->SendDebug(__FUNCTION__, 'We have an array as album, not supported yet!', 0);
+                        break;
+                    case 'string':
+                        $album = utf8_decode((string) $nowPlayingData['album']);
+                        $this->SendDebug(__FUNCTION__, 'We have an album: ' . $album, 0);
+                        break;
+
+                }
+            }
             // Media Information
             $mediaInformation = '<!doctype html>
             <html lang="de">
@@ -1067,29 +1117,32 @@ class BoseSoundTouch extends IPSModule
         // Volume
         $volume = $this->GetDeviceVolume();
         if (!is_null($volume)) {
-            $actualVolume = (int) $volume->targetvolume;
-            if ($volume) {
+            $volumeData = json_decode(json_encode($volume), true);
+            if (array_key_exists('targetvolume', $volumeData)) {
+                $actualVolume = (int) $volumeData['targetvolume'];
+                $this->SendDebug(__FUNCTION__, 'We have a target volume: ' . (string) $actualVolume, 0);
                 $this->SetValue('VolumeSlider', $actualVolume);
             }
         }
         // Bass
-        $dump = json_encode($this->ReadAttributeBoolean('BassCapabilities'));
-        $this->SendDebug('BST', 'Bass Capabilities: ' . $dump, 0);
-        if ($this->ReadAttributeBoolean('BassCapabilities')) {
-            $bass = $this->GetDeviceBass();
-            if (!is_null($bass)) {
-                $actualBass = (int) $bass->actualbass;
-                if ($bass) {
-                    $this->SetValue('BassSlider', $actualBass);
-                }
+        $bass = $this->GetDeviceBass();
+        if (!is_null($bass)) {
+            $bassData = json_decode(json_encode($bass), true);
+            if (array_key_exists('actualbass', $bassData)) {
+                $actualBass = (int) $bassData['actualbass'];
+                $this->SendDebug(__FUNCTION__, 'We have an actual bass: ' . (string) $actualBass, 0);
+                $this->SetValue('BassSlider', $actualBass);
             }
         }
         // Zone device
         $getZone = $this->GetDeviceZone();
         if (!is_null($getZone)) {
-            $member = (string) $getZone->member;
-            if (empty($member)) {
-                $this->SetValue('ZoneDevices', 0);
+            $zoneData = json_decode(json_encode($getZone), true);
+            if (array_key_exists('member', $zoneData)) {
+                $member = (string) $zoneData['member'];
+                if (empty($member)) {
+                    $this->SetValue('ZoneDevices', 0);
+                }
             }
         }
     }
@@ -1303,7 +1356,7 @@ class BoseSoundTouch extends IPSModule
                     ob_end_clean();
                     echo $this->Translate('The media file was published successfully.');
                     break;
-                    */
+                     */
                     $mediaFile = str_replace('/', '\\', $mediaFile);
                     ob_start();
                     shell_exec('mkdir ' . $kernelDir . 'webfront\\user\\media');
@@ -1320,7 +1373,7 @@ class BoseSoundTouch extends IPSModule
                     shell_exec('cp ' . $kernelDir . $mediaFile . ' ' . $kernelDir . 'webfront/user/' . $mediaFile);
                     echo $this->Translate('The media file was published successfully.');
                     break;
-                    */
+                     */
                     $kernelDir = str_replace(' ', '\ ', $kernelDir);
                     shell_exec('mkdir ' . $kernelDir . 'webfront/user/media/');
                     shell_exec('ln ' . $kernelDir . $mediaFile . ' ' . $kernelDir . 'webfront/user/' . $mediaFile);
@@ -1336,7 +1389,7 @@ class BoseSoundTouch extends IPSModule
                     shell_exec('cp ' . $kernelDir . $mediaFile . ' ' . $kernelDir . 'webfront/user/' . $mediaFile);
                     echo $this->Translate('The media file was published successfully.');
                     break;
-                    */
+                     */
                     shell_exec('mkdir ' . $kernelDir . 'webfront/user/media/');
                     shell_exec('ln ' . $kernelDir . $mediaFile . ' ' . $kernelDir . 'webfront/user/' . $mediaFile);
                     echo $this->Translate('The media file was published successfully.');
@@ -1357,27 +1410,31 @@ class BoseSoundTouch extends IPSModule
     public function GetDataFromDevice(string $Endpoint)
     {
         $xmlData = null;
-        $checkDevice = $this->CheckDeviceReachability();
-        if ($checkDevice) {
-            $xmlData = null;
-            $deviceIP = $this->ReadPropertyString('DeviceIP');
-            $url = 'http://' . $deviceIP . ':8090/' . $Endpoint;
-            $curl = curl_init();
-            curl_setopt_array($curl, [CURLOPT_URL => $url,
-                CURLOPT_HEADER                    => 0,
-                CURLOPT_RETURNTRANSFER            => 1]);
-            $result = curl_exec($curl);
-            curl_close($curl);
-            /*
-            <?xml version="1.0" ?>
-            <errors deviceID="$STRING">
-              <error value="$INT" name="$STRING" severity="$STRING">$STRING</error>
-              ...
-            </errors>
-             */
-            if (!preg_match('/<title>Object Not Found<\/title>/', $result)) {
-                $xmlData = new SimpleXMLElement($result);
-            }
+        $deviceIP = $this->ReadPropertyString('DeviceIP');
+        $url = 'http://' . $deviceIP . ':8090/' . $Endpoint;
+        $timeout = $this->ReadPropertyInteger('Timeout');
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL            => $url,
+            CURLOPT_HEADER         => 0,
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_FAILONERROR    => true,
+            CURLOPT_CONNECTTIMEOUT => $timeout,
+            CURLOPT_TIMEOUT        => 60]);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            $error_msg = curl_error($ch);
+        }
+        if ($response == false) {
+            $response = null;
+        } else {
+            $this->SendDebug(__FUNCTION__, $response, 0);
+            $xmlData = new SimpleXMLElement($response);
+        }
+        curl_close($ch);
+        if (isset($error_msg)) {
+            $response = null;
+            $this->SendDebug(__FUNCTION__, 'An error has occurred: ' . json_encode($error_msg), 0);
         }
         return $xmlData;
     }
@@ -1397,16 +1454,33 @@ class BoseSoundTouch extends IPSModule
         if ($checkDevice) {
             $deviceIP = $this->ReadPropertyString('DeviceIP');
             $url = 'http://' . $deviceIP . ':8090/' . $Endpoint;
-            $curl = curl_init();
-            curl_setopt_array($curl, [CURLOPT_URL => $url,
-                CURLOPT_HEADER                    => 0,
-                CURLOPT_RETURNTRANSFER            => 1,
-                CURLOPT_POST                      => 1,
-                CURLOPT_POSTFIELDS                => $Postfields,
-                CURLOPT_HTTPHEADER                => ['Content-type: text/xml']]);
-            $result = curl_exec($curl);
-            curl_close($curl);
-            $xmlData = new SimpleXMLElement($result);
+            $timeout = $this->ReadPropertyInteger('Timeout');
+            $ch = curl_init();
+            curl_setopt_array($ch, [
+                CURLOPT_URL            => $url,
+                CURLOPT_HEADER         => 0,
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_FAILONERROR    => true,
+                CURLOPT_CONNECTTIMEOUT => $timeout,
+                CURLOPT_TIMEOUT        => 60,
+                CURLOPT_POST           => 1,
+                CURLOPT_POSTFIELDS     => $Postfields,
+                CURLOPT_HTTPHEADER     => ['Content-type: text/xml']]);
+            $result = curl_exec($ch);
+            if (curl_errno($ch)) {
+                $error_msg = curl_error($ch);
+            }
+            if ($result == false) {
+                $xmlData = null;
+            } else {
+                $this->SendDebug(__FUNCTION__, $result, 0);
+                $xmlData = new SimpleXMLElement($result);
+            }
+            curl_close($ch);
+            if (isset($error_msg)) {
+                $xmlData = null;
+                $this->SendDebug(__FUNCTION__, 'An error has occurred: ' . json_encode($error_msg), 0);
+            }
         }
         return $xmlData;
     }
