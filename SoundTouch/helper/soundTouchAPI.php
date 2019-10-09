@@ -34,7 +34,7 @@ trait soundTouchAPI
         (string)$info->variantMode
         (string)$info->countryCode
         (string)$info->regionCode
-        */
+         */
     }
 
     /**
@@ -67,7 +67,7 @@ trait soundTouchAPI
         (string)($nowPlaying->playStatus)
         (string)utf8_decode($nowPlaying->description)
         (string)utf8_decode($nowPlaying->stationLocation))
-        */
+         */
     }
 
     /**
@@ -88,7 +88,7 @@ trait soundTouchAPI
         (int)$volume->targetvolume
         (int)$volume->actualvolume
         (bool)$volume->muteenabled
-        */
+         */
     }
 
     /**
@@ -107,7 +107,7 @@ trait soundTouchAPI
         /*
         examples:
         (string)$deviceSources->attributes()->deviceID
-        */
+         */
     }
 
     /**
@@ -127,7 +127,7 @@ trait soundTouchAPI
         examples:
         (string)$deviceZoneData->attributes()->master
         (string)$deviceZoneData->member
-        */
+         */
     }
 
     /**
@@ -150,7 +150,7 @@ trait soundTouchAPI
         (int)$bassCapabilities->bassMin
         (int)$bassCapabilities->bassMax
         (int)$bassCapabilities->bassDefault
-        */
+         */
     }
 
     /**
@@ -171,7 +171,7 @@ trait soundTouchAPI
         (string)$bass->attributes()->deviceID
         (int)$bass->targetbass
         (int)$bass->actualbass
-        */
+         */
     }
 
     /**
@@ -196,7 +196,7 @@ trait soundTouchAPI
         (bool)$devicePresets->preset[$i]->ContentItem->attributes()->isPresetable
         (string)utf8_decode($devicePresets->preset[$i]->ContentItem->itemName)
         (string)$devicePresets->preset[$i]->ContentItem->containerArt
-        */
+         */
     }
 
     /**
