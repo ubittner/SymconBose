@@ -240,16 +240,16 @@ class BoseSoundTouch extends IPSModule
         // Register timer
 
         // Update Information
-        $this->RegisterTimer('UpdateInformation', 0, 'BST_UpdateInformation($_IPS[\'TARGET\']);');
+        $this->RegisterTimer('UpdateInformation', 0, 'BST_UpdateInformation(' . $this->InstanceID . ');');
 
         // Fade out playback
-        $this->RegisterTimer('FadeOutPlayback', 0, 'BST_FadeOutPlayback($_IPS[\'TARGET\']);');
+        $this->RegisterTimer('FadeOutPlayback', 0, 'BST_FadeOutPlayback(' . $this->InstanceID . ');');
 
         // Automatic power on
-        $this->RegisterTimer('AutomaticPowerOn', 0, 'BST_ExecuteAutomaticPowerOn($_IPS[\'TARGET\']);');
+        $this->RegisterTimer('AutomaticPowerOn', 0, 'BST_ExecuteAutomaticPowerOn(' . $this->InstanceID . ');');
 
         // Automatic power off
-        $this->RegisterTimer('AutomaticPowerOff', 0, 'BST_ExecuteAutomaticPowerOff($_IPS[\'TARGET\']);');
+        $this->RegisterTimer('AutomaticPowerOff', 0, 'BST_ExecuteAutomaticPowerOff(' . $this->InstanceID . ');');
     }
 
     public function ApplyChanges()
