@@ -1,0 +1,16 @@
+{
+  "translations": {
+    "de": {
+      "This instance can search for Bose SoundTouch systems on your network.": "Diese Instanz kann nach Bose SoundTouch-Systemen in Ihrem Netzwerk suchen.",
+      "(0) Instance information": "(0) Instanzinformationen",
+      "Date:\t\t\tOctober 11, 2019": "Datum:\t\t\t11. Oktober 2019",
+      "Time:\t\t\t18:00": "Uhrzeit:\t\t\t18:00",
+      "Developer:\t\tUlrich Bittner": "Entwickler:\t\tUlrich Bittner",
+      "Prefix:\t\t\tNUKI": "Präfix:\t\t\tBST",
+      "Bose SoundTouch Systems": "Bose SoundTouch Systeme",
+      "IP Address": "IP-Adresse",
+      "Device Name": "Gerätename",
+      "Device Type": "Gerätetyp"
+    }
+  }
+}
