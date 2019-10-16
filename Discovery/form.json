@@ -1,0 +1,93 @@
+{
+  "elements": [
+    {
+      "type": "Image",
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAABjFBMVEUyLzEzMDI0MTM1MjQ2MzU3NDY3NTY4NTc5Njg6Nzk6ODo+Oz0+PD1APT9BPkBBP0FCQEFEQUNFQkRFQ0VGQ0VHREZIRUdKR0lLSEpLSUtPTU9QTk9ST1FUUlNWU1VbWVpcWltcWlxjYWJkYmRraWtvbW9wbm9ycHJ0c3R4dnd5eHl6eHp7eXp9e32Bf4GDgoOGhYaIhoiJh4iJiImMi4yOjY6Pjo+Qj5CRkJGTkpOWlZaXlpeYl5iZmJmdnZ2gn6CgoKGioaKlpKWnpqenp6itrK2urq+vr6+wr7CxsbK1tLW1tba4t7i4uLm/vr/AwMHDw8TGxsbGxsfIyMjJycnJycrKysvLy8zMzMzNzc3Nzc7Ozs/Pz8/Q0NDR0dLS0tPT1NTX19fZ2dra2tra29vb3Nzd3d3e3t7e39/f4ODg4OHh4eHh4uLi4+Pj5OTl5ubm5+fn5+jo6enp6urq6+vr6+zr7Ozs7e3t7u7u7+/v7+/v8PDw8fHx8vLy8/Pz9PT09fX19vb29/f3+PhGK6r2AAACSklEQVR42u3WWVcTQRAF4AkEEAUBjQ6uKIgRd1RA44Yb4E5ARVFAUSKKEiMOApLAeP+4Tao7nm4PSJIHfbj1dE8x0/WdpLuDh39cHgEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEDA3x4YTVr1NKt6mSdW76NqrYxZrZEQmEquU1PFAF54Th0FLlXarWgK477zWDeW3VahOosA/Dws7zT4vi9j43ig12ncrUPFTHaPpGq/VvcuIiGh1v+jEkUA+mWVbRmVj+eHvck2mxFhTNJZXJHgfzNjG4JPmvKwrD2wpEdcV/ltVIZd1cOWcVtS/dzsVkn3gIHefA2hQ1pt5W3CHlmlORMEM21rqakw7D7mGyXdxAkJLYHUD/XmM2lFhnUvmC8F8L7a3j2RQxNmWCtwXtKB1XfOJovcQNji7rxjpQDiziL1s3iu990EJqMSBzG3w3nuDO6482umSwAk5d3KcfUJnszH1+ZUnAaOSGpXD4b6Y75rhi00SbpmvoBgsYQ9EB6UVc6p/LVO7oA+fSq+4JGkqtSibLveaeT2Sq8HXRL2r5Z1E94yJ0pdB6f0sJi5Zr7vk9SFbgl1K+YIxpZSVZIeF3sVJ6z7oub3TbJdj73smQtH/3HnQtps1Jg+FN4A2nUqLNWxSUCnt1HFc+bCKdSuEaS32K2KCxh034y83CRg3Z8PVUMf1rbFK6s3llO9z1ZrOA1Muu+O8v8BAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggg4H8G/AIWmC/zrvVpEgAAAABJRU5ErkJggg=="
+    },
+    {
+      "type": "Label",
+      "caption": "Bose SoundTouch Discovery"
+    },
+    {
+      "type": "Label",
+      "caption": " "
+    },
+    {
+      "type": "Label",
+      "caption": "This instance can search for Bose SoundTouch systems on your network."
+    },
+    {
+      "type": "Label",
+      "caption": " "
+    },
+    {
+      "type": "ExpansionPanel",
+      "caption": "(0) Instance information",
+      "items": [
+        {
+          "type": "Label",
+          "caption": "Symcon Version:\t5.2>"
+        },
+        {
+          "type": "Label",
+          "caption": "Name:\t\t\tBose SoundTouch Discovery"
+        },
+        {
+          "type": "Label",
+          "caption": "Version:\t\t\t2.03-2005"
+        },
+        {
+          "type": "Label",
+          "caption": "Date:\t\t\tOctober 15, 2019"
+        },
+        {
+          "type": "Label",
+          "caption": "Time:\t\t\t18:00"
+        },
+        {
+          "type": "Label",
+          "caption": "Developer:\t\tUlrich Bittner"
+        },
+        {
+          "type": "Label",
+          "caption": "Prefix:\t\t\tBST"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Configurator",
+      "name": "Configurator",
+      "caption": "Bose SoundTouch Systems",
+      "delete": true,
+      "sort": {
+        "column": "DeviceIP",
+        "direction": "ascending"
+      },
+      "columns": [
+        {
+          "caption": "IP Address",
+          "name": "DeviceIP",
+          "width": "150px"
+        },
+        {
+          "caption": "Device Name",
+          "name": "DeviceName",
+          "width": "auto"
+        },
+        {
+          "caption": "Device Type",
+          "name": "DeviceType",
+          "width": "300px"
+        },
+        {
+          "caption": "Device ID",
+          "name": "DeviceID",
+          "width": "150px"
+        }
+      ],
+      "values": []
+    }
+  ]
+}
