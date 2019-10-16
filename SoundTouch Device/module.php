@@ -9,9 +9,9 @@
  * @copyright   (c) 2018, 2019
  * @license     CC BY-NC-SA 4.0
  *
- * @version     2.02
- * @build       2003
- * @date:       2019-10-09, 18:00
+ * @version     2.03
+ * @build       2005
+ * @date:       2019-10-15, 18:00
  *
  * @see         https://github.com/ubittner/SymconBoseSoundTouch
  *

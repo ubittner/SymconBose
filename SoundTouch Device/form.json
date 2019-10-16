@@ -6,7 +6,7 @@
     },
     {
       "type": "Label",
-      "caption": "Bose SoundTouch"
+      "caption": "Bose SoundTouch Device"
     },
     {
       "type": "Label",
@@ -34,15 +34,15 @@
         },
         {
           "type": "Label",
-          "caption": "Name:\t\t\tBose SoundTouch"
+          "caption": "Name:\t\t\tBose SoundTouch Device"
         },
         {
           "type": "Label",
-          "caption": "Version:\t\t\t2.02-2004"
+          "caption": "Version:\t\t\t2.03-2005"
         },
         {
           "type": "Label",
-          "caption": "Date:\t\t\tOctober 9, 2019"
+          "caption": "Date:\t\t\tOctober 15, 2019"
         },
         {
           "type": "Label",
