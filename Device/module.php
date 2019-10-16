@@ -9,9 +9,9 @@
  * @copyright   (c) 2018, 2019
  * @license     CC BY-NC-SA 4.0
  *
- * @version     2.02
- * @build       2003
- * @date:       2019-10-09, 18:00
+ * @version     2.03
+ * @build       2005
+ * @date:       2019-10-15, 18:00
  *
  * @see         https://github.com/ubittner/SymconBoseSoundTouch
  *
@@ -1397,91 +1397,6 @@ class BoseSoundTouch extends IPSModule
         } else {
             echo $this->Translate('Please select a media file under point (3) Media files!');
         }
-    }
-
-    /**
-     * Gets endpoint data from the device.
-     *
-     * @param string $Endpoint
-     *
-     * @return null|SimpleXMLElement
-     */
-    public function GetDataFromDevice(string $Endpoint)
-    {
-        $xmlData = null;
-        $deviceIP = $this->ReadPropertyString('DeviceIP');
-        $url = 'http://' . $deviceIP . ':8090/' . $Endpoint;
-        $timeout = $this->ReadPropertyInteger('Timeout');
-        $ch = curl_init();
-        curl_setopt_array($ch, [
-            CURLOPT_URL            => $url,
-            CURLOPT_HEADER         => 0,
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_FAILONERROR    => true,
-            CURLOPT_CONNECTTIMEOUT => $timeout,
-            CURLOPT_TIMEOUT        => 60]);
-        $response = curl_exec($ch);
-        if (curl_errno($ch)) {
-            $error_msg = curl_error($ch);
-        }
-        if ($response == false) {
-            $response = null;
-        } else {
-            $this->SendDebug(__FUNCTION__, $response, 0);
-            $xmlData = new SimpleXMLElement($response);
-        }
-        curl_close($ch);
-        if (isset($error_msg)) {
-            $response = null;
-            $this->SendDebug(__FUNCTION__, 'An error has occurred: ' . json_encode($error_msg), 0);
-        }
-        return $xmlData;
-    }
-
-    /**
-     * Sends postfield data to the endpoint of the device.
-     *
-     * @param string $Endpoint
-     * @param string $Postfields
-     *
-     * @return null|SimpleXMLElement
-     */
-    public function SendDataToDevice(string $Endpoint, string $Postfields)
-    {
-        $xmlData = null;
-        $checkDevice = $this->CheckDeviceReachability();
-        if ($checkDevice) {
-            $deviceIP = $this->ReadPropertyString('DeviceIP');
-            $url = 'http://' . $deviceIP . ':8090/' . $Endpoint;
-            $timeout = $this->ReadPropertyInteger('Timeout');
-            $ch = curl_init();
-            curl_setopt_array($ch, [
-                CURLOPT_URL            => $url,
-                CURLOPT_HEADER         => 0,
-                CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_FAILONERROR    => true,
-                CURLOPT_CONNECTTIMEOUT => $timeout,
-                CURLOPT_TIMEOUT        => 60,
-                CURLOPT_POST           => 1,
-                CURLOPT_POSTFIELDS     => $Postfields,
-                CURLOPT_HTTPHEADER     => ['Content-type: text/xml']]);
-            $result = curl_exec($ch);
-            if (curl_errno($ch)) {
-                $error_msg = curl_error($ch);
-            }
-            if ($result == false) {
-                $xmlData = null;
-            } else {
-                $this->SendDebug(__FUNCTION__, $result, 0);
-                $xmlData = new SimpleXMLElement($result);
-            }
-            curl_close($ch);
-            if (isset($error_msg)) {
-                $xmlData = null;
-                $this->SendDebug(__FUNCTION__, 'An error has occurred: ' . json_encode($error_msg), 0);
-            }
-        }
-        return $xmlData;
     }
 
     //#################### Profiles

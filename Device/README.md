@@ -1,15 +1,12 @@
-## SoundTouch
+## Bose SoundTouch Device
 
 ![Logo](../imgs/bose_logo_white.png)
 
-Dieses Modul integriert [Bose SoundTouch](https://www.bose.de/) Lautsprecher in [IP-Symcon](https://www.symcon.de). 
+Dieses Modul integriert [Bose SoundTouch](https://www.bose.de/) Geräte in [IP-Symcon](https://www.symcon.de). 
 
 Für dieses Modul besteht kein Anspruch auf Fehlerfreiheit, Weiterentwicklung, sonstige Unterstützung oder Support.
-
-Bevor das Modul installiert wird, sollte unbedingt ein Backup von IP-Symcon durchgeführt werden.
-
+Bevor dieses Modul installiert wird, sollte unbedingt ein Backup von IP-Symcon durchgeführt werden.
 Der Entwickler haftet nicht für eventuell auftretende Datenverluste oder sonstige Schäden.
-
 Der Nutzer stimmt den o.a. Bedingungen, sowie den Lizenzbedingungen ausdrücklich zu.
 
 ### Inhaltverzeichnis

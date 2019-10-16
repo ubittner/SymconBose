@@ -1,0 +1,14 @@
+{
+  "id": "{B14B682A-A8E1-ED81-9669-0238FCF3A086}",
+  "name": "Bose SoundTouch Discovery",
+  "type": 5,
+  "vendor": "Bose",
+  "aliases": [
+    "Bose SoundTouch Discovery"
+  ],
+  "url": "https://github.com/ubittner/SymconBose",
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "BST"
+}
