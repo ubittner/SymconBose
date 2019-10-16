@@ -6,7 +6,7 @@
     },
     {
       "type": "Label",
-      "caption": "Bose SoundTouch - A project of Ulrich Bittner"
+      "caption": "Bose SoundTouch"
     },
     {
       "type": "Label",
@@ -14,15 +14,7 @@
     },
     {
       "type": "Label",
-      "caption": "Description:"
-    },
-    {
-      "type": "Label",
       "caption": "This instance integrates Bose SoundTouch speakers into IP-Symcon."
-    },
-    {
-      "type": "Label",
-      "caption": "You can control the Bose SoundTouch system."
     },
     {
       "type": "Label",
@@ -33,28 +25,28 @@
       "caption": " "
     },
     {
-      "type": "Label",
-      "caption": "Configuration:"
-    },
-    {
       "type": "ExpansionPanel",
       "caption": "(0) Instance information",
       "items": [
         {
           "type": "Label",
-          "caption": "Symcon version:\t5.1>"
+          "caption": "Symcon Version:\t5.1>"
         },
         {
           "type": "Label",
-          "caption": "Module version:\t2.01-2001"
+          "caption": "Name:\t\t\tBose SoundTouch"
         },
         {
           "type": "Label",
-          "caption": "Date:\t\t\tApril 23, 2019"
+          "caption": "Version:\t\t\t2.02-2004"
         },
         {
           "type": "Label",
-          "caption": "Time:\t\t\t10:00"
+          "caption": "Date:\t\t\tOctober 9, 2019"
+        },
+        {
+          "type": "Label",
+          "caption": "Time:\t\t\t18:00"
         },
         {
           "type": "Label",
@@ -373,24 +365,25 @@
   ],
   "actions": [
     {
-      "type": "Button",
-      "caption": "Manual",
-      "onClick": "echo 'https://github.com/ubittner/SymconBose';"
-    },
-    {
-      "type": "Button",
-      "caption": "Publish media file",
-      "onClick": "BST_PublishMediaFile($id);"
-    },
-    {
-      "type": "Button",
-      "caption": "Show device information",
-      "onClick": "$info = BST_GetDeviceInfo($id); print_r($info); IPS_LogMessage('BST', $info->asXML());"
-    },
-    {
-      "type": "Button",
-      "caption": "Show playing information",
-      "onClick": "$info = BST_GetDeviceNowPlaying($id); print_r($info); IPS_LogMessage('BST', $info->asXML());"
+      "type": "ExpansionPanel",
+      "caption": "Action area",
+      "items": [
+        {
+          "type": "Button",
+          "caption": "Publish media file",
+          "onClick": "BST_PublishMediaFile($id);"
+        },
+        {
+          "type": "Button",
+          "caption": "Show device information",
+          "onClick": "$info = BST_GetDeviceInfo($id); print_r($info); IPS_LogMessage('BST', $info->asXML());"
+        },
+        {
+          "type": "Button",
+          "caption": "Show playing information",
+          "onClick": "$info = BST_GetDeviceNowPlaying($id); print_r($info); IPS_LogMessage('BST', $info->asXML());"
+        }
+      ]
     }
   ],
   "status": [

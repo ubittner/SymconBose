@@ -1,12 +1,5 @@
 ## SoundTouch
 
-[![Version](https://img.shields.io/badge/Symcon_Version-5.1>-red.svg)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
-![Version](https://img.shields.io/badge/Modul_Version-2.01-blue.svg)
-![Version](https://img.shields.io/badge/Modul_Build-2001-blue.svg)
-![Version](https://img.shields.io/badge/Code-PHP-blue.svg)
-[![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![StyleCI](https://github.styleci.io/repos/183038756/shield?branch=master&style=flat)](https://github.styleci.io/repos/183038756)
-
 ![Logo](../imgs/bose_logo_white.png)
 
 Dieses Modul integriert [Bose SoundTouch](https://www.bose.de/) Lautsprecher in [IP-Symcon](https://www.symcon.de). 
@@ -28,8 +21,6 @@ Der Nutzer stimmt den o.a. Bedingungen, sowie den Lizenzbedingungen ausdrücklic
 5. [Statusvariablen und Profile](#5-statusvariablen-und-profile)
 6. [WebFront](#6-webfront)
 7. [PHP-Befehlsreferenz](#7-php-befehlsreferenz)
-8. [GUIDs](#8-guids)
-9. [Changelog](#9-changelog)
 
 ### 1. Funktionsumfang
 
@@ -122,6 +113,12 @@ Die Informationen werden auch unter Meldungen (Log) gespeichert / angezeigt.
 __Audiobenachrichtigungen__:
 
 Mit Version 2.00 besteht die Möglichkeit Audiobenachrichtigungen auf dem Bose SoundTouch Gerät auszugeben.  
+
+Folgende Geräte werden zur Zeit für die Audiobenachrichtigungen unterstützt:  
+* SoundTouch 10
+* SoundTouch 20 Series III
+* SoundTouch 30 Series III  
+
 Nachfolgende Konfiguration ist vorzunehemen, wenn die Audioquelle sich auf dem IP-Symcom Server befinden soll.  
 Bitte beachten Sie, dass nicht alle Bose SoundTouch Systeme (ältere Modelle) Audiobenachrichtigungen wiedergeben können.  
 Fügen Sie zunächst die Audiodatei zu den Medien Dateien hinzu.  
@@ -346,20 +343,3 @@ Wird von Ausschalt-Timer verwendet und schaltet das Gerät zum vorgegebenen Zeit
 `BST_PublishMediaFile(integer $InstanceID)`
 
 Veröffentlicht die ausgewählte Mediendatei.
-
-
-### 8. GUIDs
-
-__Modul GUIDs__:
-
- Name       | GUID                                   | Bezeichnung  |
-------------| -------------------------------------- | -------------|
-Bibliothek  | {F5AAB293-F714-4FD1-ADF9-8F30B22201B7} | Library GUID |
-Modul       | {4836EF46-FF79-4D6A-91C9-FE54F1BDF2DB} | Module GUID  |
-
-### 9. Changelog
-
-Version     | Datum      | Beschreibung
------------ | -----------| -------------------
-2.01-2001   | 23.04.2019 | Version für Module-Store
-2.00        | 19.09.2018 | Version 2.00 für IP-Symcon 5.0 
