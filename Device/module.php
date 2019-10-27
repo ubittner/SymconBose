@@ -10,8 +10,8 @@
  * @license     CC BY-NC-SA 4.0
  *
  * @version     2.03
- * @build       2005
- * @date:       2019-10-15, 18:00
+ * @build       2006
+ * @date:       2019-10-26, 18:00
  *
  * @see         https://github.com/ubittner/SymconBoseSoundTouch
  *
@@ -1138,9 +1138,12 @@ class BoseSoundTouch extends IPSModule
         if (!is_null($getZone)) {
             $zoneData = json_decode(json_encode($getZone), true);
             if (array_key_exists('member', $zoneData)) {
-                $member = (string) $zoneData['member'];
-                if (empty($member)) {
-                    $this->SetValue('ZoneDevices', 0);
+                $type = gettype($zoneData['member']);
+                if ($type == 'string') {
+                    $member = (string) $zoneData['member'];
+                    if (empty($member)) {
+                        $this->SetValue('ZoneDevices', 0);
+                    }
                 }
             }
         }
